@@ -1,0 +1,16 @@
+﻿country,year,lat,lon,GID_1,GID_2,households,rural,iwi,file
+angola,2006,-12.169282533746893,13.859254833836394,AGO.2,AGO.2.9,20,0,68.0963003,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00000.tfrecord.gz
+angola,2006,-12.361700248766306,14.778201418775303,AGO.2,AGO.2.2,19,1,10.609053157894737,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00001.tfrecord.gz
+angola,2006,-10.827450959191102,14.342113940830195,AGO.7,AGO.7.1,25,1,29.973928160000003,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00002.tfrecord.gz
+angola,2006,-9.9913114922301,14.898295195171599,AGO.7,AGO.7.5,1,1,7.704135000000001,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00003.tfrecord.gz
+angola,2006,-11.518892853703996,14.750436858152796,AGO.7,AGO.7.10,24,1,13.371825583333333,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00004.tfrecord.gz
+angola,2006,-11.346349963685805,15.0736527463028,AGO.7,AGO.7.12,24,1,10.653362499999998,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00005.tfrecord.gz
+angola,2006,-12.1677526420718,13.845458499319994,AGO.2,AGO.2.9,24,0,62.00904154166668,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00006.tfrecord.gz
+angola,2006,-12.747311748866196,13.6071209021235,AGO.2,AGO.2.3,22,0,66.05902113636363,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00007.tfrecord.gz
+angola,2006,-11.502919490707905,14.060840958097101,AGO.7,AGO.7.11,25,0,51.72799408,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00008.tfrecord.gz
+angola,2006,-13.130185406884095,13.1094282637657,AGO.2,AGO.2.1,24,1,20.937782541666664,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00009.tfrecord.gz
+angola,2006,-12.427660369640305,13.573896317444394,AGO.2,AGO.2.9,22,1,27.37037777272728,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00010.tfrecord.gz
+angola,2006,-13.435832767025301,14.287284666076694,AGO.2,AGO.2.7,25,1,6.029491639999999,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00011.tfrecord.gz
+angola,2006,-10.5485483224341,21.990448229176998,AGO.13,AGO.13.3,24,1,6.490979958333334,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00012.tfrecord.gz
+angola,2006,-9.910749600801523,21.236637550897907,AGO.13,AGO.13.3,25,1,5.383236879999999,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00013.tfrecord.gz
+angola,2006,-11.2402383921519,19.741250902713197,AGO.13,AGO.13.2,25,1,5.86972224,/cephyr/NOBACKUP/groups/globalpoverty1/data/dhs_tfrecords/angola_2006/00014.tfrecord.gz

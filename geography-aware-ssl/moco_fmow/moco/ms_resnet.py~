@@ -1,0 +1,116 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Mar 10 10:43:29 2022
+
+@author: Benjamin
+"""
+
+import argparse
+#import builtins
+import math
+import os
+import random
+import shutil
+import time
+import warnings
+import numpy as np
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.nn.parallel
+import torch.backends.cudnn as cudnn
+import torch.distributed as dist
+import torch.optim
+import torch.multiprocessing as mp
+import torch.utils.data
+import torch.utils.data.distributed
+import torchvision.transforms as transforms
+import torchvision.datasets as datasets
+import torchvision.models as models
+
+#from tensorboardX import SummaryWriter
+
+#import moco.loader
+#import moco.builder
+#import datasets
+
+IMAGE_SIZE = 224  # Input images are 224 px x 224 px
+MS_CHANNELS = ['BLUE', 'GREEN', 'RED', 'SWIR1', 'SWIR2', 'TEMP1', 'NIR', 'NL']
+
+class MSResNet18(nn.Module):
+    
+
+    
+    def __init__(self, pretrained=False, num_classes=128):
+        super().__init__()
+        
+        if pretrained:
+            self.resnet18 = self.get_pretrained_model(num_classes=num_classes)
+        
+        # else:
+        #     base_resnet = models.resnet18(pretrained=False, num_classes=num_classes)
+        #     base_resnet.conv1 = nn.Conv2d(len(MS_CHANNELS), 64, kernel_size=7, stride=2, padding=3,bias=False)
+        
+        
+        
+    def forward(self, x):
+        return self.resnet18(x)
+    
+    def get_pretrained_model(num_classes=128):
+        new_in_channels = len(MS_CHANNELS)
+        model = models.resnet18(pretrained=True)
+        
+        layer = model.conv1
+                
+        # Creating new Conv2d layer
+        new_layer = nn.Conv2d(in_channels=new_in_channels, 
+                          out_channels=layer.out_channels, 
+                          kernel_size=layer.kernel_size, 
+                          stride=layer.stride, 
+                          padding=layer.padding,
+                          bias=layer.bias)
+        
+        # Initialize the weights from new channel with the red channel weights
+        # Red is an arbitrary choice
+        copy_weights_from_channel = 0 
+        
+        # Copying the weights from the old to the new layer
+        # Rearranging from RGB to BGR
+        with torch.no_grad():
+            #new_layer.weight[:, :layer.in_channels, :, :] = layer.weight.clone()
+            
+            old_layer_weights = layer.weight.clone()
+           
+            new_layer.weight[:, 0, :, :] = old_layer_weights[:, 2, :, :] #Blue
+            new_layer.weight[:, 1, :, :] = old_layer_weights[:, 1, :, :] #Green
+            new_layer.weight[:, 2, :, :] = old_layer_weights[:, 0, :, :] #Red
+        
+        #Copying the weights of the `copy_weights_from_channel` channel of the old layer to the extra (MS) channels of the new layer
+        for i in range(new_in_channels - layer.in_channels):
+            channel = layer.in_channels + i
+            with torch.no_grad():
+                new_layer.weight[:, channel:channel+1, :, :] = layer.weight[:, copy_weights_from_channel:copy_weights_from_channel+1, : :].clone()
+        new_layer.weight = nn.Parameter(new_layer.weight)
+        
+        model.conv1 = new_layer
+        return model
+    
+    
+    
+    
+#%%
+#class MSResnet18(nn.Module):
+    
+
+#%%
+#IMAGE_SIZE = 224  # Input images are 224 px x 224 px
+#MS_CHANNELS = ['BLUE', 'GREEN', 'RED', 'SWIR1', 'SWIR2', 'TEMP1', 'NIR', 'NL']
+
+
+
+
+
+#base_resnet = models.resnet18(pretrained=True)
+
+#base_resnet.state_dict()
